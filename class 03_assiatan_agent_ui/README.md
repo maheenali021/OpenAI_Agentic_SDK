@@ -18,32 +18,32 @@ This project implements a streaming chatbot assistant using Gemini AI (via OpenA
 
 1. Gemini AI Client (AsyncOpenAI)
 
-. Connects to Gemini’s OpenAI-compatible API.
+    . Connects to Gemini’s OpenAI-compatible API.
 
-. Uses gemini-2.0-flash for fast responses.
+    . Uses gemini-2.0-flash for fast responses.
 
 2. Agent & Runner
 
-. Agent: Defines the assistant’s behavior ("You are a helpful assistant").
+    . Agent: Defines the assistant’s behavior ("You are a helpful assistant").
 
-. Runner: Handles execution and streaming.
+    . Runner: Handles execution and streaming.
 
 3. Chainlit Handlers
 
-. ***@cl.on_chat_start***: Initializes chat history.
+    . ***@cl.on_chat_start***: Initializes chat history.
 
-. ***@cl.on_message***: Processes user input, streams responses, and updates history.
+    . ***@cl.on_message***: Processes user input, streams responses, and updates history.
 
 4. Conversation Memory
 
-Maintains history as a list of ***{"role": "user/assistant", "content": "..."}.***
+    . Maintains history as a list of ***{"role": "user/assistant", "content": "..."}.***
 
 **How It Works**
 
-. User sends a message → appended to history.
+    . User sends a message → appended to history.
 
-. Runner.run_streamed() sends the query to Gemini.
+    .  Runner.run_streamed() sends the query to Gemini.
 
-. Responses are streamed in real-time via msg.stream_token().
+    . Responses are streamed in real-time via msg.stream_token().
 
-. Final output is saved in history for context.
+    . Final output is saved in history for context.
