@@ -16,7 +16,8 @@ client = AsyncOpenAI(
 model = OpenAIChatCompletionsModel(
     model= "mistralai/mistral-small-3.2-24b-instruct:free",
     openai_client= client
-) # type: ignore
+)
+     # type: ignore
 config = RunConfig(
     model= model,
     model_provider=client, #type:ignore
@@ -51,6 +52,7 @@ except FileNotFoundError:
 #title
 st.title(" CodeCrawler 🐍🧠")
 st.subheader("Your AI-Powered Python Coding Companion 👨‍💻")
+
 if 'openai_client' not in st.session_state:
     st.session_state['openai_client'] = OpenAI(
         api_key=openrouter_api_key,
@@ -60,7 +62,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Display chat messages
-for message in st.session_state.messages:
+for message in st.session_state["messages"]:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
     
